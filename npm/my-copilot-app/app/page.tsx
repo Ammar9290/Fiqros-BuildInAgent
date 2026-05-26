@@ -46,53 +46,55 @@ export default function Page() {
     },
   });
 
-   const [user] = useState({
-    name: "Jane Smith",
-    role: "Engineering Manager",
-    team: "Platform",
-  });
-  const [projects] = useState([
-    { id: 1, name: "Auth Redesign", status: "in-progress" },
-    { id: 2, name: "API v2", status: "planning" },
-  ]);
-  // Share user info with the agent
-  useAgentContext({
-    description: "The currently logged-in user",
-    value: user,
-  });
-  // Share project data with the agent
-  useAgentContext({
-    description: "The user's active projects",
-    value: projects,
-  });
+
+  //useAgentContext
+  //  const [user] = useState({
+  //   name: "Jane Smith",
+  //   role: "Engineering Manager",
+  //   team: "Platform",
+  // });
+  // const [projects] = useState([
+  //   { id: 1, name: "Auth Redesign", status: "in-progress" },
+  //   { id: 2, name: "API v2", status: "planning" },
+  // ]);
+  // // Share user info with the agent
+  // useAgentContext({
+  //   description: "The currently logged-in user",
+  //   value: user,
+  // });
+  // // Share project data with the agent
+  // useAgentContext({
+  //   description: "The user's active projects",
+  //   value: projects,
+  // });
+
 
 //reading and writing state
+   const { agent } = useAgent();
+  // Read state set by the agent
+  const tasks = (agent.state.tasks as any[]) ?? [];
 
-  //  const { agent } = useAgent();
-  // // Read state set by the agent
-  // const tasks = (agent.state.tasks as any[]) ?? [];
-
-  // const handleThemeChange = (theme: string) => {
-  //   agent.setState({ 
-  //     ...agent.state, 
-  //     userPreferences: { theme }, 
-  //   }); 
-  // };
+  const handleThemeChange = (theme: string) => {
+    agent.setState({ 
+      ...agent.state, 
+      userPreferences: { theme }, 
+    }); 
+  };
 
   return (
     <main>
       <h1>Your App</h1>
-       {/* <h2>Tasks</h2>
+       <h2>Tasks</h2>
       <ul>
         {tasks.map((task, i) => (
           <li key={i}>
             {task.title} — {task.status}
           </li>
         ))}
-      </ul> */}
+      </ul>
 
-        {/* <button onClick={() => handleThemeChange("dark")}>Dark Mode</button>
-      <button onClick={() => handleThemeChange("light")}>Light Mode</button> */}
+        <button onClick={() => handleThemeChange("dark")}>Dark Mode</button>
+      <button onClick={() => handleThemeChange("light")}>Light Mode</button>
    <CopilotSidebar
         defaultOpen={true}
         labels={{

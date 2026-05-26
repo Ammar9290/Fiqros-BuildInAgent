@@ -9,9 +9,11 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@copilotkit/react-core": "^1.57.3",
-    "@copilotkit/react-ui": "^1.57.3",
-    "@copilotkit/runtime": "^1.57.3",
+    "@copilotkit/a2ui-renderer": "^1.57.4",
+    "@copilotkit/react-core": "^1.57.4",
+    "@copilotkit/react-ui": "^1.57.4",
+    "@copilotkit/runtime": "^1.57.4",
+    "@copilotkit/shared": "^1.57.4",
     "next": "16.2.6",
     "openai": "^6.38.0",
     "react": "19.2.4",
