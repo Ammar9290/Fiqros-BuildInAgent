@@ -31,8 +31,10 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">  
-         <CopilotKit runtimeUrl="/api/copilotkit"  
- //         a2ui={{ theme: myCustomTheme }}
+         <CopilotKit runtimeUrl="/api/copilotkit"   
+          //  enableInspector={false}
+
+        // a2ui={{ theme: myCustomTheme }}
 >
           {children}
         </CopilotKit></body>

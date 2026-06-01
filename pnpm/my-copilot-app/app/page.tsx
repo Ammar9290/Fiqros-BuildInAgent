@@ -12,7 +12,7 @@ import { useCopilotKit } from "@copilotkit/react-core/v2";
 //import { randomUUID } from "@copilotkit/shared/v2";
 import ThreadSidebar from "./ThreadSidebar";
 import { useEffect } from "react";
-
+//import { CustomChat } from "./customChat";
 
 const weatherSchema = z.object({
   city: z.string().describe("City name"),
@@ -105,16 +105,16 @@ useFrontendTool({
 
 
 //reading and writing state
-  //  const { agent } = useAgent();
-  // // Read state set by the agent
-  // const tasks = (agent.state.tasks as any[]) ?? [];
+   const { agent } = useAgent();
+  // Read state set by the agent
+  const tasks = (agent.state.tasks as any[]) ?? [];
 
-  // const handleThemeChange = (theme: string) => {
-  //   agent.setState({ 
-  //     ...agent.state, 
-  //     userPreferences: { theme }, 
-  //   }); 
-  // };
+  const handleThemeChange = (theme: string) => {
+    agent.setState({ 
+      ...agent.state, 
+      userPreferences: { theme }, 
+    }); 
+  };
 
   //headless
 //     const { agent } = useAgent();
@@ -137,41 +137,41 @@ useFrontendTool({
 
 
 //AGUI
-  const { agent } = useAgent();
+//   const { agent } = useAgent();
 
-useEffect(() => {
-    const subscription = agent.subscribe({
-      // Called on every event
-      onEvent({ event, agent }) {
-        console.log("Event:", event.type, event);
-      },
-      // Text message streaming
-      onTextMessageContentEvent({ event, textMessageBuffer, agent }) {
-        console.log("Streaming text:", textMessageBuffer);
-      },
-      // Tool calls
-      onToolCallEndEvent({ event, toolCallName, toolCallArgs, agent }) {
-        console.log("Tool called:", toolCallName, toolCallArgs);
-      },
-      // State updates
-      onStateSnapshotEvent({ event, agent }) {
-        console.log("State snapshot:", agent.state);
-      },
-      // High-level lifecycle
-      onMessagesChanged({ agent }) {
-        console.log("Messages updated:", agent.messages);
-      },
-      onStateChanged({ agent }) {
-        console.log("State changed:", agent.state);
-      },
-    });
-    return () => subscription.unsubscribe();
-  }, [agent]);
+// useEffect(() => {
+//     const subscription = agent.subscribe({
+//       // Called on every event
+//       onEvent({ event, agent }) {
+//         console.log("Event:", event.type, event);
+//       },
+//       // Text message streaming
+//       onTextMessageContentEvent({ event, textMessageBuffer, agent }) {
+//         console.log("Streaming text:", textMessageBuffer);
+//       },
+//       // Tool calls
+//       onToolCallEndEvent({ event, toolCallName, toolCallArgs, agent }) {
+//         console.log("Tool called:", toolCallName, toolCallArgs);
+//       },
+//       // State updates
+//       onStateSnapshotEvent({ event, agent }) {
+//         console.log("State snapshot:", agent.state);
+//       },
+//       // High-level lifecycle
+//       onMessagesChanged({ agent }) {
+//         console.log("Messages updated:", agent.messages);
+//       },
+//       onStateChanged({ agent }) {
+//         console.log("State changed:", agent.state);
+//       },
+//     });
+//     return () => subscription.unsubscribe();
+//   }, [agent]);
 
   return (
     <main>
       <h1>Your App</h1>
-       {/* <h2>Tasks</h2>
+       <h2>Tasks</h2>
       <ul>
         {tasks.map((task, i) => (
           <li key={i}>
@@ -181,7 +181,7 @@ useEffect(() => {
       </ul>
 
         <button onClick={() => handleThemeChange("dark")}>Dark Mode</button>
-      <button onClick={() => handleThemeChange("light")}>Light Mode</button> */}
+      <button onClick={() => handleThemeChange("light")}>Light Mode</button>
 
 {/* 
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
@@ -226,7 +226,7 @@ useEffect(() => {
   ); */}
         {/* <ThreadSidebar onSelectThread={setActiveThreadId} /> */}
 
-
+{/* <CustomChat></CustomChat> */}
    <CopilotSidebar 
         defaultOpen={true}
         
